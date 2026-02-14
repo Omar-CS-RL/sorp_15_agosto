@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi amor Gabriela 💕</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- FLORES FLOTANTES -->
+  <div id="flores-container"></div>
+
+  <!-- PÁGINA PRINCIPAL -->
+  <section id="pagina-principal" class="active">
+    <div class="contenedor-principal">
+      
+      <!-- MENSAJE ANIMADO -->
+      <div class="mensaje-principal">
+        <h1 class="titulo-principal">Para mi amor</h1>
+        <h2 class="subtitulo">niña hermosa, Gabriela 💕</h2>
+        <div class="decoracion-flores">
+          <span class="flor">🌹</span>
+          <span class="flor">💜</span>
+          <span class="flor">🌻</span>
+        </div>
+      </div>
+
+      <!-- CUENTA REGRESIVA -->
+      <div class="cuenta-regresiva">
+        <p class="texto-countdown">Nuestro día especial en:</p>
+        <div id="countdown">
+          <div class="tiempo-box">
+            <span id="dias" class="numero">00</span>
+            <span class="etiqueta">Días</span>
+          </div>
+          <div class="tiempo-box">
+            <span id="horas" class="numero">00</span>
+            <span class="etiqueta">Horas</span>
+          </div>
+          <div class="tiempo-box">
+            <span id="minutos" class="numero">00</span>
+            <span class="etiqueta">Minutos</span>
+          </div>
+          <div class="tiempo-box">
+            <span id="segundos" class="numero">00</span>
+            <span class="etiqueta">Segundos</span>
+          </div>
+        </div>
+        <p class="fecha-especial">15 de Febrero, 2025 - 5:20 PM 🐁❤️🐀</p>
+      </div>
+
+      <!-- CONTROLES DE MÚSICA -->
+      <div class="controles-musica">
+        <button id="btn-musica" class="btn-control">
+          <span id="icono-musica">🎵</span>
+          <span id="texto-musica">Reproducir</span>
+        </button>
+        <div class="control-volumen">
+          <span class="icono-volumen">🔊</span>
+          <input type="range" id="volumen" min="0" max="100" value="50">
+        </div>
+      </div>
+      <audio id="musica" src="Enanitos Verdes - Francés Limón LETRA.mp3" loop></audio>
+
+      <!-- BOTÓN VER GALERÍA -->
+      <button class="btn-galeria" onclick="mostrarGaleria()">
+        ✨ Ver Galería de Nuestros Momentos ✨
+      </button>
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN GALERÍA -->
+  <section id="galeria-seccion">
+    <button class="btn-volver" onclick="volverInicio()">← Volver</button>
+    
+    <div class="galeria-header">
+      <h2>Algunos de Nuestros Momentos Juntos</h2>
+      <p class="galeria-subtitulo">Cada foto cuenta nuestra historia 🐁❤️🐀</p>
+    </div>
+
+    <div class="galeria-grid" id="galeria-grid">
+      <!-- Las fotos se generarán aquí -->
+    </div>
+  </section>
+
+  <!-- MODAL PARA VER IMAGEN GRANDE -->
+  <div id="modal" class="modal">
+    <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+    <div class="modal-contenido">
+      <img id="modal-imagen" src="" alt="">
+      <p id="modal-descripcion"></p>
+    </div>
+  </div>
+
+  <!-- CONFETI CANVAS -->
+  <canvas id="confeti-canvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
