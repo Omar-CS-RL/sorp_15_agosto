@@ -71,51 +71,51 @@ volumen.addEventListener('input', (e) => {
 });
 
 /* ======================
-   CUENTA REGRESIVA (FIX)
+   CUENTA REGRESIVA
 ====================== */
+// PARA PRUEBAS: Descomenta la siguiente línea para probar (1 minuto en el futuro)
+// const fechaObjetivo = new Date(Date.now() + 1 * 60 * 1000);
 
-// FECHA OBJETIVO REAL (Perú GMT-5)
-// Año, Mes-1, Día, Hora, Minuto, Segundo
-const fechaObjetivo = new Date(2025, 1, 15, 17, 20, 0).getTime();
-// 1 = Febrero (los meses van de 0 a 11)
+// PARA EL DÍA REAL: Esta es la fecha correcta
+const fechaObjetivo = new Date(2026, 1, 15, 17, 20, 0).getTime(); // Perú GMT-5
 
 let mensajeYaMostrado = false;
-let intervalo = null;
 
 function actualizarCuentaRegresiva() {
-  const ahora = Date.now();
-  let diferencia = fechaObjetivo - ahora;
+  const ahora = new Date().getTime();
+  const diferencia = fechaObjetivo - ahora;
 
   if (diferencia <= 0) {
-    setTiempo(0, 0, 0, 0);
-
+    // Mostrar 00:00:00:00
+    document.getElementById('dias').textContent = '00';
+    document.getElementById('horas').textContent = '00';
+    document.getElementById('minutos').textContent = '00';
+    document.getElementById('segundos').textContent = '00';
+    
+    // Mostrar mensaje solo una vez
     if (!mensajeYaMostrado) {
       mensajeYaMostrado = true;
-      setTimeout(mostrarMensajeEspecial, 500);
+      setTimeout(() => {
+        mostrarMensajeEspecial();
+      }, 500);
     }
-
+    
     clearInterval(intervalo);
     return;
   }
 
-  const segundosTotales = Math.floor(diferencia / 1000);
+  const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-  const dias = Math.floor(segundosTotales / 86400);
-  const horas = Math.floor((segundosTotales % 86400) / 3600);
-  const minutos = Math.floor((segundosTotales % 3600) / 60);
-  const segundos = segundosTotales % 60;
-
-  setTiempo(dias, horas, minutos, segundos);
+  document.getElementById('dias').textContent = String(dias).padStart(2, '0');
+  document.getElementById('horas').textContent = String(horas).padStart(2, '0');
+  document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
+  document.getElementById('segundos').textContent = String(segundos).padStart(2, '0');
 }
 
-function setTiempo(d, h, m, s) {
-  document.getElementById('dias').textContent = String(d).padStart(2, '0');
-  document.getElementById('horas').textContent = String(h).padStart(2, '0');
-  document.getElementById('minutos').textContent = String(m).padStart(2, '0');
-  document.getElementById('segundos').textContent = String(s).padStart(2, '0');
-}
-
-intervalo = setInterval(actualizarCuentaRegresiva, 1000);
+const intervalo = setInterval(actualizarCuentaRegresiva, 1000);
 actualizarCuentaRegresiva();
 
 /* ======================
